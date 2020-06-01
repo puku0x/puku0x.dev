@@ -1,0 +1,20 @@
+<ng-container *ngFor="let post of posts$ | async">
+  <a class="link" [routerLink]="post.route">
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar class="avatar-image"></div>
+        <mat-card-title>{{ post.title || post.route }}</mat-card-title>
+        <mat-card-subtitle>
+          {{ post.date | date: 'fullDate' }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image alt="" width="688" height="387" [src]="post.image" />
+      <mat-card-content>
+        <p class="description">{{ post.description }}</p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button>もっと読む</button>
+      </mat-card-actions>
+    </mat-card>
+  </a>
+</ng-container>

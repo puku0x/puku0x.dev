@@ -1,1 +1,83 @@
+@import '~normalize.css';
+@import '~highlight.js/scss/atom-one-dark.scss';
+@import '~@angular/material/theming';
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+@import 'theme.scss';
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($website-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+html {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+html,
+body {
+  height: 100%;
+  background-color: mat-color($website-primary);
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.mat-card-image {
+  height: auto;
+}
+
+.mat-typography h2 {
+  margin: 2em 0 0.5em 0;
+}
+
+code {
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  color: #e91e63;
+  background-color: #eee;
+  font-size: 85%;
+}
+
+pre > code,
+pre > code[class*='language-'] {
+  display: block;
+  overflow-x: auto;
+  padding: 16px;
+  color: #e6e1dc;
+  background-color: #282c34;
+  font-size: 100%;
+}
+
+blockquote {
+  margin: 1em 40px;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #eeeeee;
+
+  @media (max-width: 599px) {
+    margin: 1em 0px;
+  }
+}
+
+.avatar-image {
+  background-image: url('https://avatars0.githubusercontent.com/u/2607019?s=64&v=4');
+  background-size: cover;
+}

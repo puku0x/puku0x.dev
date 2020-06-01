@@ -1,0 +1,20 @@
+:host {
+  display: block;
+  padding: 16px;
+}
+
+.link {
+  display: block;
+  text-decoration: none;
+}
+
+.link + .link {
+  margin-top: 16px;
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

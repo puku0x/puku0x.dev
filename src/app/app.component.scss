@@ -1,0 +1,27 @@
+:host {
+  display: grid;
+  grid-template:
+    'header' 64px
+    'main' 1fr
+    'footer' 64px / 1fr;
+  min-height: calc(100vh - env(safe-area-inset-top));
+
+  @media (max-width: 599px) {
+    grid-template:
+      'header' 56px
+      'main' 1fr
+      'footer' 56px / 1fr;
+  }
+}
+
+app-header {
+  grid-area: header;
+}
+
+app-main {
+  grid-area: main;
+}
+
+app-footer {
+  grid-area: footer;
+}
