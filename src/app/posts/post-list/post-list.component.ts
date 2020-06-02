@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { ScullyRoute, ScullyRoutesService } from '@scullyio/ng-lib';
 import { map } from 'rxjs/operators';
 
@@ -8,7 +9,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./post-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PostListComponent {
+export class PostListComponent implements OnInit {
   posts$ = this.srs.available$.pipe(
     map((routeList) =>
       routeList.filter((route: ScullyRoute) =>
@@ -18,16 +19,31 @@ export class PostListComponent {
     map((posts) => posts.sort((a, b) => (a.date > b.date ? -1 : 1)))
   );
 
-  constructor(private srs: ScullyRoutesService) {}
-
-  share(title?: string, url?: string) {
-    const data = {
-      title,
-      url,
-    };
-
-    if ('share' in navigator) {
-      navigator.share(data);
-    }
+  ngOnInit() {
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Puku is a software engineer, a big fan of Angular and the organizer of ng-fukuoka.',
+    });
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        'Puku is a software engineer, a big fan of Angular and the organizer of ng-fukuoka.',
+    });
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'puku0x.net',
+    });
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({
+      property: 'og:url',
+      content: 'https://puku0x.net',
+    });
+    this.meta.updateTag({
+      property: 'og:image',
+      content: 'https://puku0x.net/assets/images/ogp.jpg',
+    });
   }
+
+  constructor(private meta: Meta, private srs: ScullyRoutesService) {}
 }
