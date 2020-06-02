@@ -1,5 +1,5 @@
 <app-header [sticky]="true">puku0x.net</app-header>
-<app-main>
-  <router-outlet></router-outlet>
+<app-main [@fadeInAnimation]="getRouterOutletState(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
 </app-main>
 <app-footer>©2020 puku0x</app-footer>
