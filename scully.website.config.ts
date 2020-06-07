@@ -16,5 +16,5 @@ export const config: ScullyConfig = {
       },
     },
   },
-  defaultPostRenderers: [FlashPrevention, 'seoHrefOptimise'],
+  defaultPostRenderers: ['seoHrefOptimise', FlashPrevention],
 };
