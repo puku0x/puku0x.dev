@@ -14,14 +14,16 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-    }),
+    // ServiceWorkerModule.register('ngsw-worker.js', {
+    //   enabled: environment.production,
+    // }),
     AppRoutingModule,
-    ScullyLibModule,
+    ScullyLibModule.forRoot({
+      useTransferState: true,
+      alwaysMonitor: true,
+    }),
     SharedModule,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
