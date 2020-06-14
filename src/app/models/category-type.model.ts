@@ -1,0 +1,15 @@
+export type CategoryType =
+  | 'angular'
+  | 'css'
+  | 'ionic'
+  | 'javascript'
+  | 'ngrx'
+  | 'nx'
+  | 'other'
+  | 'react'
+  | 'redux'
+  | 'rxjs'
+  | 'scully'
+  | 'typescript'
+  | 'vue'
+  | 'vuex';
