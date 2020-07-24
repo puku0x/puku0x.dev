@@ -2,7 +2,7 @@ import { ScullyConfig, setPluginConfig } from '@scullyio/scully';
 import { getFlashPreventionPlugin } from 'scully-plugin-flash-prevention';
 
 setPluginConfig('md', { enableSyntaxHighlighting: true });
-const FlashPrevention = getFlashPreventionPlugin();
+const flashPrevention = getFlashPreventionPlugin();
 
 export const config: ScullyConfig = {
   projectRoot: './src',
@@ -16,5 +16,5 @@ export const config: ScullyConfig = {
       },
     },
   },
-  defaultPostRenderers: ['seoHrefOptimise', FlashPrevention],
+  defaultPostRenderers: ['seoHrefOptimise', flashPrevention],
 };

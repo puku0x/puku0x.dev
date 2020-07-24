@@ -19,7 +19,7 @@ export class PostListComponent implements OnInit {
     map((posts) => posts.sort((a, b) => (a.date > b.date ? -1 : 1)))
   );
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.meta.updateTag({
       name: 'description',
       content:
