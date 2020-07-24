@@ -1,5 +1,5 @@
-<section>
-  <mat-card class="mat-elevation-z0">
+<mat-card class="mat-elevation-z0">
+  <section>
     <ng-container *ngIf="post$ | async as post">
       <mat-card-header>
         <div mat-card-avatar class="avatar-image"></div>
@@ -9,9 +9,31 @@
         </mat-card-subtitle>
       </mat-card-header>
       <img mat-card-image alt="" width="720" height="405" [src]="post.image" />
+      <section class="category">
+        <ng-container *ngIf="post$ | async as post">
+          <mat-chip-list>
+            <mat-chip *ngFor="let category of post.categories">
+              <span>#{{ category }}</span>
+            </mat-chip>
+          </mat-chip-list>
+        </ng-container>
+      </section>
     </ng-container>
     <mat-card-content>
       <scully-content></scully-content>
     </mat-card-content>
-  </mat-card>
-</section>
+  </section>
+  <section class="pagenator">
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <ng-container *ngIf="nextPost$ | async as next">
+        <div mat-subheader>次の投稿</div>
+        <a mat-list-item mat-line [routerLink]="next.route">{{ next.title }}</a>
+      </ng-container>
+      <ng-container *ngIf="prevPost$ | async as prev">
+        <div mat-subheader>前の投稿</div>
+        <a mat-list-item mat-line [routerLink]="prev.route">{{ prev.title }}</a>
+      </ng-container>
+    </mat-nav-list>
+  </section>
+</mat-card>
