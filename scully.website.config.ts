@@ -1,8 +1,10 @@
 import { ScullyConfig, setPluginConfig } from '@scullyio/scully';
-import { getFlashPreventionPlugin } from 'scully-plugin-flash-prevention';
+// import { getFlashPreventionPlugin } from 'scully-plugin-flash-prevention';
+import { DisableAngular } from 'scully-plugin-disable-angular';
 
 setPluginConfig('md', { enableSyntaxHighlighting: true });
-const flashPrevention = getFlashPreventionPlugin();
+// const flashPrevention = getFlashPreventionPlugin();
+setPluginConfig(DisableAngular, 'render', { removeState: true });
 
 export const config: ScullyConfig = {
   projectRoot: './src',
@@ -16,5 +18,6 @@ export const config: ScullyConfig = {
       },
     },
   },
-  defaultPostRenderers: ['seoHrefOptimise', flashPrevention],
+  defaultPostRenderers: [DisableAngular],
+  // defaultPostRenderers: ['seoHrefOptimise', flashPrevention],
 };

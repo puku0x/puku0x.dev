@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { ServiceWorkerModule } from '@angular/service-worker';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 
@@ -13,14 +12,14 @@ import { AppComponent } from './app.component';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     // ServiceWorkerModule.register('ngsw-worker.js', {
     //   enabled: environment.production,
     // }),
-    ScullyLibModule.forRoot({
-      useTransferState: true,
-      alwaysMonitor: true,
-    }),
+    // ScullyLibModule.forRoot({
+    //   useTransferState: true,
+    //   alwaysMonitor: true,
+    // }),
+    ScullyLibModule,
     SharedModule,
     AppRoutingModule,
   ],
