@@ -1,5 +1,5 @@
 ---
-title: Scully と Angular Service Worker を組み合わせてみる
+title: Scully で PWA したかった
 description: Scully と Angular Service Worker を組み合わせようとしたけどダメだった話です。
 image: https://user-images.githubusercontent.com/2607019/88352827-35d28900-cd96-11ea-8cd2-516d9579e6ff.png
 date: 2020-06-12
