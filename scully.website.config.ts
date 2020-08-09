@@ -1,5 +1,5 @@
 import { ScullyConfig, setPluginConfig } from '@scullyio/scully';
-// import { getFlashPreventionPlugin } from 'scully-plugin-flash-prevention';
+// import { getFlashPreventionPlugin } from '@scullyio/scully-plugin-flash-prevention';
 import { DisableAngular } from 'scully-plugin-disable-angular';
 
 setPluginConfig('md', { enableSyntaxHighlighting: true });
