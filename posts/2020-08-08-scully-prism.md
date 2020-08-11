@@ -1,7 +1,7 @@
 ---
 title: Scully が Prism に対応
 description: さようなら highlight.js こんにちは Prism。
-image: https://user-images.githubusercontent.com/2607019/89737309-e933c100-daaa-11ea-9628-9586e3be4c68.png
+image: https://user-images.githubusercontent.com/2607019/89917269-8f123780-dc33-11ea-9f79-6b78f50f9122.png
 date: 2020-08-08
 categories:
   - scully
@@ -21,7 +21,7 @@ Scully v1.0.0-beta.1 で Markdown プラグインの実装が [Prism](https://pr
 
 ### ライブラリの修正
 
-v1.0.0-beta.1 を使っている場合は修正が必要です。
+v1.0.0-beta.2 より古いバージョンを使っている場合は修正が必要です。
 
 `node_modeules/@scullyio/scully/lib/fileHandlerPlugins/markdown.js` に下記の２行を追加しましょう。
 
@@ -61,6 +61,18 @@ require('prismjs/components/prism-tsx'); // 追加
             "styles": ["src/styles.scss", "src/prism.scss"],
 ```
 
+### プラグイン設定
+
+Scully の設定ファイルでシンタックスハイライトを有効にします。
+
+```ts
+import { ScullyConfig, setPluginConfig } from '@scullyio/scully';
+
+setPluginConfig('md', { enableSyntaxHighlighting: true });
+
+export const config: ScullyConfig = {...};
+```
+
 ## 結果
 
 シンタックスハイライトが適用されました。
@@ -85,7 +97,7 @@ const Example: React.FC = () => {
 
 highlight.js → Prism に変更されたと言ってもまだベータ版なので一手間必要ですね...
 
-現在、最初から TSX がサポートされるように PR を送っています。
+ちなみに TSX をデフォルトでサポートするように PR を送っています。
 https://github.com/scullyio/scully/pull/839
 
-マージされることを祈ります。
+~~マージされることを祈ります。~~ マージされました。
