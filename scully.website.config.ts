@@ -18,6 +18,6 @@ export const config: ScullyConfig = {
       },
     },
   },
-  defaultPostRenderers: [DisableAngular],
+  defaultPostRenderers: ['seoHrefOptimise', DisableAngular],
   // defaultPostRenderers: ['seoHrefOptimise', flashPrevention],
 };
