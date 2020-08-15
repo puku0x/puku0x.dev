@@ -1,6 +1,6 @@
 ---
 title: Scully が Prism に対応
-description: さようなら highlight.js こんにちは Prism。
+description: さようならhighlight.js、こんにちはPrism。
 image: https://user-images.githubusercontent.com/2607019/89917269-8f123780-dc33-11ea-9f79-6b78f50f9122.png
 date: 2020-08-08
 categories:
@@ -23,9 +23,10 @@ Scully v1.0.0-beta.1 で Markdown プラグインの実装が [Prism](https://pr
 
 v1.0.0-beta.2 より古いバージョンを使っている場合は修正が必要です。
 
-`node_modeules/@scullyio/scully/lib/fileHandlerPlugins/markdown.js` に下記の２行を追加しましょう。
+`node_modeules`内にある Scully のプラグインのソースに下記の２行を追加しましょう。
 
 ```js
+// node_modeules/@scullyio/scully/lib/fileHandlerPlugins/markdown.js`
 // Syntax Highlighting
 const Prism = require('prismjs');
 require('prismjs/components/prism-bash');
