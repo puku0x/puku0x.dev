@@ -1,7 +1,7 @@
 ---
 title: Scully + Prism で TSX のシンタックスハイライト
 description: さようならhighlight.js、こんにちはPrism。
-image: https://user-images.githubusercontent.com/2607019/90326693-591fdb00-dfc6-11ea-9d6e-43dc79dc2fbd.png
+image: https://user-images.githubusercontent.com/2607019/90331650-28a16680-dff1-11ea-8a2a-3c48ebcaceb0.png
 date: 2020-08-08
 categories:
   - scully
