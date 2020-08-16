@@ -34,12 +34,34 @@
     <meta name="apple-mobile-web-app-title" content="puku0x.net" />
     <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
     <script defer>
-      (function () {
+      (() => {
         if ('serviceWorker' in navigator) {
-          window.addEventListener('load', function () {
-            const registration = navigator.serviceWorker.register(
-              '/service-worker.js'
-            );
+          window.addEventListener('load', () => {
+            navigator.serviceWorker
+              .register('/service-worker.js')
+              .then((registration) => {
+                registration.addEventListener('updatefound', () => {
+                  const installingWorker = registration.installing;
+                  if (!installingWorker) return;
+                  installingWorker.addEventListener('statechange', () => {
+                    switch (installingWorker.state) {
+                      case 'installed':
+                        if (navigator.serviceWorker.controller) {
+                          installingWorker.postMessage({
+                            type: 'SKIP_WAITING',
+                          });
+                        }
+                        break;
+                    }
+                  });
+                });
+              });
+          });
+          let refreshing = false;
+          navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (refreshing) return;
+            window.location.reload();
+            refreshing = true;
           });
         }
       })();
