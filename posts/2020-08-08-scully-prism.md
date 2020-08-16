@@ -1,7 +1,7 @@
 ---
-title: Scully が Prism に対応
+title: Scully + Prism で TSX のシンタックスハイライト
 description: さようならhighlight.js、こんにちはPrism。
-image: https://user-images.githubusercontent.com/2607019/89917269-8f123780-dc33-11ea-9f79-6b78f50f9122.png
+image: https://user-images.githubusercontent.com/2607019/90326693-591fdb00-dfc6-11ea-9d6e-43dc79dc2fbd.png
 date: 2020-08-08
 categories:
   - scully
@@ -15,7 +15,7 @@ published: true
 
 Scully v1.0.0-beta.1 で Markdown プラグインの実装が [Prism](https://prismjs.com/) に変わりました。
 
-これで JSX / TSX のシンタックスハイライトも有効になる...かと思われましたがまだ完全にサポートされている訳ではなさそうでした。
+これで JSX / TSX のシンタックスハイライトも有効になる...かと思われましたがまだ完全にサポートされている訳ではなさそうです。
 
 ## 準備
 
@@ -101,4 +101,4 @@ highlight.js → Prism に変更されたと言ってもまだベータ版なの
 ちなみに TSX をデフォルトでサポートするように PR を送っています。
 https://github.com/scullyio/scully/pull/839
 
-~~マージされることを祈ります。~~ マージされました。
+~~マージされることを祈ります。~~ マージされました。次回リリースを待ちましょう。
