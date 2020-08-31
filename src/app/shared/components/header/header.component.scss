@@ -3,7 +3,6 @@
 :host {
   display: block;
   z-index: 10;
-  background-color: mat-color($website-primary);
 
   &.sticky {
     position: sticky;

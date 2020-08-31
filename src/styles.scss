@@ -12,7 +12,13 @@
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($website-theme);
+@media (prefers-color-scheme: light) {
+  @include angular-material-theme($light-theme);
+}
+
+@media (prefers-color-scheme: dark) {
+  @include angular-material-theme($dark-theme);
+}
 
 /* You can add global styles to this file, and also import other style files */
 html,
@@ -23,12 +29,28 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: #fafafa;
+  color: rgba(0, 0, 0, 0.87);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #2d2d2d;
+    color: rgba(255, 255, 255, 0.87);
+  }
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+a {
+  color: #2962ff;
+  text-decoration: none;
+
+  @media (prefers-color-scheme: dark) {
+    color: #ffd600;
+  }
 }
 
 .mat-card-image {
@@ -42,9 +64,14 @@ body {
 code {
   padding: 0.2em 0.4em;
   border-radius: 3px;
-  color: #e91e63;
-  background-color: #eee;
-  font-size: 85%;
+  color: #ff1744;
+  background-color: rgba(0, 0, 0, 0.03);
+  font-size: 90%;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsla(0, 0%, 100%, 0.06);
+    color: #ffa78c;
+  }
 }
 
 pre > code,
