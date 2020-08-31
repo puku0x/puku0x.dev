@@ -19,7 +19,7 @@ Web アプリケーションでオフライン対応する場合は Service Work
 
 ## Angular Service Worker での問題
 
-いつものように `@angular/pwa` を追加してみましょう。
+まずは `@angular/pwa` を追加してみましょう。
 
 ```bash
 ng add @angular/pwa
@@ -72,19 +72,80 @@ npm run pwa:regenerate
 
 ## Workbox による PWA 化
 
-代替案として Angular を無効化し、Service Worker の実装を [Workbox](https://developers.google.com/web/tools/workbox) に変更することをお勧めします。
+代替案として Service Worker の実装を [Workbox](https://developers.google.com/web/tools/workbox) に変更することをお勧めします。
 
-まず `scully-plugin-disable-angular` をインストールし、Scully の設定に追加します。
+まず前述の [Issue](https://github.com/scullyio/scully/issues/529) を参考に URL のシリアライズ処理を末尾スラッシュ対応に上書きします。
 
-```bash
-npm i -D scully-plugin-disable-angular
+```ts
+import { DefaultUrlSerializer, UrlTree } from '@angular/router';
+
+/**
+ * @see https://github.com/angular/angular/issues/16051
+ */
+export class TrailingSlashUrlSerializer extends DefaultUrlSerializer {
+  private static _withTrailingSlash(url: string): string {
+    const splitOn = url.indexOf('?') > -1 ? '?' : '#';
+    const pathArr = url.split(splitOn);
+
+    if (!pathArr[0].endsWith('/')) {
+      const fileName: string = url.substring(url.lastIndexOf('/') + 1);
+      if (fileName.indexOf('.') === -1) {
+        pathArr[0] += '/';
+      }
+    }
+    const result = pathArr.join(splitOn);
+    return result;
+  }
+
+  serialize(tree: UrlTree): string {
+    return TrailingSlashUrlSerializer._withTrailingSlash(super.serialize(tree));
+  }
+}
 ```
+
+`app.module.ts` に追加しましょう。
+
+```ts
+import { UrlSerializer } from '@angular/router';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [...],
+  providers:[
+    { provide: UrlSerializer, useClass: TrailingSlashUrlSerializer }
+  ],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
+Scully の設定に `seoHrefOptimize` 追加します。
+
+```ts
+import { ScullyConfig, setPluginConfig } from '@scullyio/scully';
+
+export const config: ScullyConfig = {
+  projectRoot: './src',
+  projectName: 'website',
+  outDir: './dist/static',
+  routes: {
+    '/blog/:slug': {
+      type: 'contentFolder',
+      slug: {
+        folder: './blog',
+      },
+    },
+  },
+  defaultPostRenderers: ['seoHrefOptimise'],
+};
+```
+
+Router を使わない場合は Angular を無効化してしまっても良いかもしれません。
 
 ```ts
 import { ScullyConfig, setPluginConfig } from '@scullyio/scully';
 import { DisableAngular } from 'scully-plugin-disable-angular';
 
-setPluginConfig('md', { enableSyntaxHighlighting: true });
 setPluginConfig(DisableAngular, 'render', { removeState: true });
 
 export const config: ScullyConfig = {
@@ -92,7 +153,7 @@ export const config: ScullyConfig = {
   projectName: 'website',
   outDir: './dist/static',
   routes: {
-    '/posts/:slug': {
+    '/blog/:slug': {
       type: 'contentFolder',
       slug: {
         folder: './posts',
@@ -122,9 +183,7 @@ module.exports = {
   (function () {
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        const registration = navigator.serviceWorker.register(
-          '/service-worker.js'
-        );
+        navigator.serviceWorker.register('/service-worker.js');
       });
     }
   })();
@@ -137,7 +196,7 @@ module.exports = {
 
 ```bash
 npm run build -- --prod --statsJson
-npm run scully -- --removeStaticDist
+npm run scully
 npx workbox-cli generateSW workbox-config.js
 ```
 

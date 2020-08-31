@@ -23,7 +23,7 @@ Scully v1.0.0-beta.1 で Markdown プラグインの実装が [Prism](https://pr
 
 v1.0.0-beta.2 より古いバージョンを使っている場合は修正が必要です。
 
-`node_modeules`内にある Scully のプラグインのソースに下記の２行を追加しましょう。
+`node_modules`内にある Scully のプラグインのソースに下記の２行を追加しましょう。
 
 ```js
 // node_modeules/@scullyio/scully/lib/fileHandlerPlugins/markdown.js`
