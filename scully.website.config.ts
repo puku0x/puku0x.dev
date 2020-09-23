@@ -1,10 +1,17 @@
 import { ScullyConfig, setPluginConfig } from '@scullyio/scully';
-// import { getFlashPreventionPlugin } from '@scullyio/scully-plugin-flash-prevention';
-import { DisableAngular } from 'scully-plugin-disable-angular';
+import { MarkedConfig } from '@scullyio/scully/lib/fileHanderPlugins/markdown';
+import {
+  removeScripts,
+  RemoveScriptsConfig,
+} from '@scullyio/plugins-scully-plugin-remove-scripts';
 
-setPluginConfig('md', { enableSyntaxHighlighting: true });
-// const flashPrevention = getFlashPreventionPlugin();
-setPluginConfig(DisableAngular, 'render', { removeState: true });
+setPluginConfig<MarkedConfig>('md', { enableSyntaxHighlighting: true });
+setPluginConfig<RemoveScriptsConfig>(removeScripts, {
+  keepTransferstate: false,
+  keepAttributes: ['scullyKeep'],
+});
+
+const defaultPostRenderers = [removeScripts, 'seoHrefOptimise'];
 
 export const config: ScullyConfig = {
   projectRoot: './src',
@@ -18,6 +25,5 @@ export const config: ScullyConfig = {
       },
     },
   },
-  defaultPostRenderers: ['seoHrefOptimise', DisableAngular],
-  // defaultPostRenderers: ['seoHrefOptimise', flashPrevention],
+  defaultPostRenderers,
 };
