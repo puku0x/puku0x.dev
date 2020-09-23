@@ -1,6 +1,6 @@
 # Website
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.x.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.x.
 
 ## Development server
 
