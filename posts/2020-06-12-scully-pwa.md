@@ -1,7 +1,7 @@
 ---
 title: Scully で PWA
 description: Scullyを用いつつAngularアプリケーションをPWA化する方法を紹介します。
-image: https://user-images.githubusercontent.com/2607019/88352827-35d28900-cd96-11ea-8cd2-516d9579e6ff.png
+image: https://user-images.githubusercontent.com/2607019/94294541-f0e7f000-ff9a-11ea-98ed-6682895297e5.jpg
 date: 2020-06-12
 categories:
   - angular
