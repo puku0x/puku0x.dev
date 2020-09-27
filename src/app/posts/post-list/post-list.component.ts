@@ -23,12 +23,12 @@ export class PostListComponent implements OnInit {
     this.meta.updateTag({
       name: 'description',
       content:
-        'Puku is a software engineer, a big fan of Angular and the organizer of ng-fukuoka.',
+        'Puku is a software developer, a big fan of Angular and the organizer of ng-fukuoka.',
     });
     this.meta.updateTag({
       property: 'og:description',
       content:
-        'Puku is a software engineer, a big fan of Angular and the organizer of ng-fukuoka.',
+        'Puku is a software developer, a big fan of Angular and the organizer of ng-fukuoka.',
     });
     this.meta.updateTag({
       property: 'og:title',
