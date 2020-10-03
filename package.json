@@ -36,6 +36,7 @@
     "@scullyio/init": "~1.0.0",
     "@scullyio/plugins-scully-plugin-remove-scripts": "~1.0.0",
     "@scullyio/scully": "~1.0.0",
+    "@scullyio/scully-plugin-critical-css": "0.0.2",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.0",
     "@types/node": "^12.11.1",
