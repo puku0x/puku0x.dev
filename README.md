@@ -27,7 +27,7 @@ npm run build -- --prod
 ## Prerender
 
 ```
-npm run scully -- --RSD
+npm run scully -- --prod --RSD
 ```
 
 ## Service Worker
