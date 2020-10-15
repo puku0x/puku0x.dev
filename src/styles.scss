@@ -12,12 +12,10 @@
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@media (prefers-color-scheme: light) {
-  @include angular-material-theme($light-theme);
-}
+@include angular-material-theme($light-theme);
 
 @media (prefers-color-scheme: dark) {
-  @include angular-material-theme($dark-theme);
+  @include angular-material-color($dark-theme);
 }
 
 /* You can add global styles to this file, and also import other style files */
@@ -98,4 +96,23 @@ blockquote {
 .avatar-image {
   background-image: url('https://avatars0.githubusercontent.com/u/2607019?s=64&v=4');
   background-size: cover;
+}
+
+button.copy-to-clipboard {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 4px 8px;
+  background-color: #607d8b;
+  color: #fff;
+  border-radius: 4px;
+  margin: 4px;
+  border: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+
+  &:hover {
+    background-color: #ffffff;
+    color: #607d8b;
+    border: 0;
+  }
 }
