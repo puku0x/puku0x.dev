@@ -43,7 +43,7 @@ body {
 }
 
 a {
-  color: #2962ff;
+  color: #304ffe;
   text-decoration: none;
 
   @media (prefers-color-scheme: dark) {
@@ -62,7 +62,7 @@ a {
 code {
   padding: 0.2em 0.4em;
   border-radius: 3px;
-  color: #ff1744;
+  color: #d50000;
   background-color: rgba(0, 0, 0, 0.03);
   font-size: 90%;
 
@@ -103,7 +103,7 @@ button.copy-to-clipboard {
   right: 0;
   top: 0;
   padding: 4px 8px;
-  background-color: #607d8b;
+  background-color: #455a64;
   color: #fff;
   border-radius: 4px;
   margin: 4px;
@@ -112,7 +112,7 @@ button.copy-to-clipboard {
 
   &:hover {
     background-color: #ffffff;
-    color: #607d8b;
+    color: #455a64;
     border: 0;
   }
 }
