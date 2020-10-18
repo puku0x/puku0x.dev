@@ -11,7 +11,7 @@
       <img mat-card-image alt="" width="720" height="405" [src]="post.image" />
       <section class="category">
         <ng-container *ngIf="post$ | async as post">
-          <mat-chip-list>
+          <mat-chip-list aria-label="Categories">
             <mat-chip *ngFor="let category of post.categories">
               <span>#{{ category }}</span>
             </mat-chip>
