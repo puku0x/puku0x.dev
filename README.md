@@ -1,6 +1,6 @@
 # puku0x.net
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.0-next.x.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.x.
 
 ## Install
 
