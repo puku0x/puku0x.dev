@@ -21,26 +21,21 @@ const plugin = async (html: string): Promise<string> => {
 <script defer scullyKeep>
   (() => {
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker
-          .register('${config.swPath}')
-          .then((registration) => {
-            registration.addEventListener('updatefound', () => {
-              const installingWorker = registration.installing;
-              if (!installingWorker) return;
-              installingWorker.addEventListener('statechange', () => {
-                switch (installingWorker.state) {
-                  case 'installed':
-                    if (navigator.serviceWorker.controller) {
-                      installingWorker.postMessage({
-                        type: 'SKIP_WAITING',
-                      });
-                    }
-                    break;
+      window.addEventListener('load', async () => {
+        const registration = await navigator.serviceWorker.register('${config.swPath}');
+        registration.addEventListener('updatefound', () => {
+          const installingWorker = registration.installing;
+          if (!installingWorker) return;
+          installingWorker.addEventListener('statechange', () => {
+            switch (installingWorker.state) {
+              case 'installed':
+                if (navigator.serviceWorker.controller) {
+                  installingWorker.postMessage({ type: 'SKIP_WAITING' });
                 }
-              });
-            });
+                break;
+            }
           });
+        });
       });
       let refreshing = false;
       navigator.serviceWorker.addEventListener('controllerchange', () => {
