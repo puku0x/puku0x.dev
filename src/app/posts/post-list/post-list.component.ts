@@ -32,16 +32,16 @@ export class PostListComponent implements OnInit {
     });
     this.meta.updateTag({
       property: 'og:title',
-      content: 'puku0x.net',
+      content: 'puku0x.dev',
     });
     this.meta.updateTag({ property: 'og:type', content: 'website' });
     this.meta.updateTag({
       property: 'og:url',
-      content: 'https://puku0x.net',
+      content: 'https://puku0x.dev',
     });
     this.meta.updateTag({
       property: 'og:image',
-      content: 'https://puku0x.net/assets/images/ogp.jpg',
+      content: 'https://puku0x.dev/assets/images/ogp.jpg',
     });
   }
 

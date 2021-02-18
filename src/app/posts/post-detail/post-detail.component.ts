@@ -74,7 +74,7 @@ export class PostDetailComponent implements OnInit {
       this.meta.updateTag({ property: 'og:type', content: 'article' });
       this.meta.updateTag({
         property: 'og:url',
-        content: `https://puku0x.net${post.route}`,
+        content: `https://puku0x.dev${post.route}`,
       });
       this.meta.updateTag({ property: 'og:image', content: post.image });
     });
