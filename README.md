@@ -1,4 +1,4 @@
-# puku0x.net
+# puku0x.dev
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.x.
 
