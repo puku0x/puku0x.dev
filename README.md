@@ -1,6 +1,6 @@
 # puku0x.dev
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.x.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.x.
 
 ## Install
 
@@ -33,7 +33,7 @@ npm run scully -- --prod --RSD
 ## Service Worker
 
 ```
-npx workbox-cli@5 generateSW workbox-config.js
+npx workbox-cli generateSW workbox-config.js
 ```
 
 ## Running unit tests
