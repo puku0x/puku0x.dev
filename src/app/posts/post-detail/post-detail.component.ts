@@ -1,8 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ScullyRoutesService, ScullyRoute } from '@scullyio/ng-lib';
-import { combineLatest } from 'rxjs';
-import { map, shareReplay, take } from 'rxjs/operators';
+import { combineLatestWith, map, shareReplay, take } from 'rxjs';
 
 import { Post } from '../../models';
 
@@ -35,7 +34,8 @@ export class PostDetailComponent implements OnInit {
 
   post$ = this.srs.getCurrent().pipe(map(toPost), shareReplay(1));
 
-  nextPost$ = combineLatest([this.posts$, this.post$]).pipe(
+  nextPost$ = this.posts$.pipe(
+    combineLatestWith(this.post$),
     map(([posts, post]) => {
       const index = posts.findIndex((p) => p.route === post.route);
       if (index > 0) {
@@ -45,7 +45,8 @@ export class PostDetailComponent implements OnInit {
     })
   );
 
-  prevPost$ = combineLatest([this.posts$, this.post$]).pipe(
+  prevPost$ = this.posts$.pipe(
+    combineLatestWith(this.post$),
     map(([posts, post]) => {
       const index = posts.findIndex((p) => p.route === post.route);
       if (-1 < index && index < posts.length - 1) {
