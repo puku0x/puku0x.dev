@@ -1,6 +1,11 @@
 # puku0x.dev
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.x.
+- Angular v13
+- Scully v12
+- ESLint v8 + angular-eslint v13
+- Jest v27
+- Cypress v9
+- Workbox v6
 
 ## Install
 
@@ -24,12 +29,6 @@ npm run build
 
 ```
 npm run scully -- --prod --RSD
-```
-
-## Service Worker
-
-```
-npx workbox-cli generateSW workbox-config.js
 ```
 
 ## Running unit tests
