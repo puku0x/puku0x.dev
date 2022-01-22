@@ -1,20 +1,20 @@
-@import '~normalize.css';
-@import '~@angular/material/theming';
+@use '../node_modules/normalize.css/normalize.css';
+@use '@angular/material' as mat;
+
+@use 'theme.scss' as theme;
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
-@include mat-core();
-
-@import 'theme.scss';
+@include mat.core();
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($light-theme);
+@include mat.all-component-themes(theme.$light-theme);
 
 @media (prefers-color-scheme: dark) {
-  @include angular-material-color($dark-theme);
+  @include mat.all-component-colors(theme.$dark-theme);
 }
 
 /* You can add global styles to this file, and also import other style files */
