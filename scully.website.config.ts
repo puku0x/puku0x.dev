@@ -47,13 +47,6 @@ export const config: ScullyConfig = {
         folder: './posts',
       },
     },
-    '/users/:userId': {
-      type: 'json',
-      userId: {
-        url: 'https://jsonplaceholder.typicode.com/users',
-        property: 'id',
-      },
-    },
   },
   defaultPostRenderers,
 };
