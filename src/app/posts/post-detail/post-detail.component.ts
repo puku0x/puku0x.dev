@@ -1,7 +1,12 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ScullyRoutesService, ScullyRoute } from '@scullyio/ng-lib';
-import { combineLatest, map, shareReplay, take } from 'rxjs';
+import { combineLatest, map, shareReplay, Subject, takeUntil, tap } from 'rxjs';
 
 import { Post } from '../../models';
 
@@ -21,7 +26,9 @@ const toPost = (route: ScullyRoute): Post => ({
   changeDetection: ChangeDetectionStrategy.OnPush,
   preserveWhitespaces: true,
 })
-export class PostDetailComponent implements OnInit {
+export class PostDetailComponent implements OnInit, OnDestroy {
+  onDestroy$ = new Subject<boolean>();
+
   posts$ = this.srs.available$.pipe(
     map((routeList) =>
       routeList.filter((route) => route.route.startsWith(`/posts/`))
@@ -57,25 +64,34 @@ export class PostDetailComponent implements OnInit {
   constructor(private meta: Meta, private srs: ScullyRoutesService) {}
 
   ngOnInit(): void {
-    this.post$.pipe(take(1)).subscribe((post) => {
-      this.meta.updateTag({
-        name: 'description',
-        content: post.description,
-      });
-      this.meta.updateTag({
-        property: 'og:description',
-        content: post.description,
-      });
-      this.meta.updateTag({
-        property: 'og:title',
-        content: post.title,
-      });
-      this.meta.updateTag({ property: 'og:type', content: 'article' });
-      this.meta.updateTag({
-        property: 'og:url',
-        content: `https://puku0x.dev${post.route}`,
-      });
-      this.meta.updateTag({ property: 'og:image', content: post.image });
-    });
+    this.post$
+      .pipe(
+        tap((post) => {
+          this.meta.updateTag({
+            name: 'description',
+            content: post.description,
+          });
+          this.meta.updateTag({
+            property: 'og:description',
+            content: post.description,
+          });
+          this.meta.updateTag({
+            property: 'og:title',
+            content: post.title,
+          });
+          this.meta.updateTag({ property: 'og:type', content: 'article' });
+          this.meta.updateTag({
+            property: 'og:url',
+            content: `https://puku0x.dev${post.route}`,
+          });
+          this.meta.updateTag({ property: 'og:image', content: post.image });
+        }),
+        takeUntil(this.onDestroy$)
+      )
+      .subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy$.next(true);
   }
 }
